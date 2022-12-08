@@ -1,7 +1,7 @@
 import './App.css';
 import Nav from './components/Nav';
 import Home from './pages/Home';
-import LogIn from './pages/LogIn';
+import LogIn from './pages/Login';
 import Register from './pages/Register';
 import Resorts from './pages/Resorts';
 import { Route, Routes } from 'react-router'

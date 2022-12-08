@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-// import { RegisterUser } from '../services/AuthServices'
+import { RegisterUser } from '../services/AuthServices'
 
 const Register = ({ setUser, toggleAuthenticated }) => {
     let navigate = useNavigate()
@@ -17,11 +17,11 @@ const Register = ({ setUser, toggleAuthenticated }) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        // await RegisterUser({
-        //     name: formValues.name,
-        //     email: formValues.email,
-        //     password: formValues.password
-        // })
+        await RegisterUser({
+            name: formValues.name,
+            email: formValues.email,
+            password: formValues.password
+        })
         setFormValues({
             name: '',
             email: '',
@@ -95,3 +95,4 @@ const Register = ({ setUser, toggleAuthenticated }) => {
 }
 
 export default Register
+
