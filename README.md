@@ -1,70 +1,23 @@
-# Getting Started with Create React App
+# Project4-SkiResort-FrontEnd
+#### ![alt text](https://play-lh.googleusercontent.com/Okz3btgnNcBWX_4SPNoNcyNJd6hA_4ePDw5YEr7YRNuEPyjS1-YvmrgU2ZmzuthQ4Q=w5120-h2880-rw)
+## Overview: 
+### In this project I will be creating a ski resort website in which you can look up ski resorts in the east coast. You will be able to see reviews and also see conditions of the ski resort. You will additionally be able to see the weather at these resorts using an api. 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Requirements: 
+- Be a new repo
+- Have separate directories for the frontend (client) and backend within the main repository
+- Include a beautiful, professional README.md (use markdown)
+- Your README should have links to socials, a detailed description of your project, technologies used, a getting started section (with links to your deployed site and Trello), screenshots of your final product (no more than 2-3), future updates, and credits.
+- Include a minimum of 3 models (Postgres, Sequelize, or Mongoose)
+- Have full CRUD operations (POST, GET, PUT, DELETE) on at least one model
+- Use functional components with React hooks.
+- Have at least 60 meaningful git commits - You should be committing your changes every time you build a new feature.
+- Your code should be properly indented, spaced, and within code blocks. DO NOT leave in commented out code that was left unused (bad practice).
+- Be deployed
 
-## Available Scripts
+### Citations:
+#### Image-https://play.google.com/store/apps/details?id=de.appaffairs.skiresort&hl=en_US&gl=US&pli=1
+#### Requirements- General Assembly Github
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
