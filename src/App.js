@@ -5,6 +5,7 @@ import LogIn from './pages/Login';
 import Register from './pages/Register';
 import Resorts from './pages/Resorts';
 import { Route, Routes } from 'react-router'
+import ResortDetails from './pages/ResortDetails';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             path="/resorts"
             element={<Resorts />}
           />
+          <Route path="/resorts/:id" element={<ResortDetails />} />
         </Routes>
       </main>
     </div>
