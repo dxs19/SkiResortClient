@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { GetResorts, GetResortsById } from '../services/ResortServices'
 import { useNavigate } from 'react-router-dom'
-
+import Search from '../components/Search'
 const Resorts = () => {
     let navigate = useNavigate()
     const [resorts, setResorts] = useState([])
@@ -22,6 +22,7 @@ const Resorts = () => {
 
 
     return (<div>
+        <Search />
         <h1>List of Resorts:</h1>
         <div className="resort-container">
             {resorts.map((resort) => (
