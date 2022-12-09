@@ -33,6 +33,11 @@ const ResortDetails = () => {
         <div>
             <h3>Details Page:</h3>
             <h1>{resorts.name}</h1>
+            <img src={resorts.image} />
+            <h2>Resort Overview: {resorts.review}</h2>
+            <h2>Location: {resorts.location}</h2>
+            <h2>Height: {resorts.height}</h2>
+            <h2>Number of Lifts: {resorts.runs}</h2>
         </div>
     )
 }
