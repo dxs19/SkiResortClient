@@ -46,6 +46,14 @@ const ResortDetails = () => {
             <h2>Location: {resorts.location}</h2>
             <h2>Height: {resorts.height}</h2>
             <h2>Number of Lifts: {resorts.runs}</h2>
+
+            <h3>Comments:
+                {resorts.Comments.map((comment) => (
+                    <div key={comment.id}>
+                        <h4>{comment.review}</h4>
+                    </div>
+                ))}
+            </h3>
             {/* <button onClick={() => handleDelete(resorts.id)} className="delete-btn">Delete Resort</button> */}
         </div>
     )
