@@ -14,7 +14,7 @@ const Resorts = () => {
     useEffect(() => {
         showAllResorts()
     },
-        [resorts])
+        [])
 
     const viewDetails = async (id) => {
         navigate(`/resorts/${id}`)

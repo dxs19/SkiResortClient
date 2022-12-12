@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useEffect, useState } from 'react'
-import { Navigate, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 const ResortDetails = () => {
     let { id } = useParams()
@@ -8,30 +8,30 @@ const ResortDetails = () => {
 
 
 
-    const initialState = {
-        resortId: id
-    }
-    const [resorts, setResorts] = useState({})
-    const [formState, setFormState] = useState(initialState)
 
-    const handleDelete = async (id) => {
-        await axios.delete(
-            `http://localhost:3001/api/resorts/${id}`
-        )
-        navigate('/resorts')
-    }
+
+
+    const [resorts, setResorts] = useState({})
+    const [comments, setComments] = useState([{ review: "no comments" }])
+
+
     useEffect(() => {
         const detailsCall = async () => {
-            await axios
+            let res = await axios
                 .get(
                     `http://localhost:3001/api/resorts/${id}`
                 )
-                .then((res) => {
-                    setResorts(res.data)
-                })
+            setResorts(res.data)
+
         }
         detailsCall()
-    }, [])
+    },)
+
+    // useEffect(() => {
+    //     if (resorts) {
+    //         setComments(resorts.Comments)
+    //     }
+    // }, [resorts])
 
 
 
@@ -47,13 +47,14 @@ const ResortDetails = () => {
             <h2>Height: {resorts.height}</h2>
             <h2>Number of Lifts: {resorts.runs}</h2>
 
-            <h3>Comments:
-                {resorts.Comments.map((comment) => (
+            <div> <h3>Comments:</h3>
+                {resorts.Comments?.map((comment) => (
                     <div key={comment.id}>
                         <h4>{comment.review}</h4>
                     </div>
-                ))}
-            </h3>
+                ))} </div>
+
+
             {/* <button onClick={() => handleDelete(resorts.id)} className="delete-btn">Delete Resort</button> */}
         </div>
     )
