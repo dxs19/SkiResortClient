@@ -6,10 +6,40 @@ import Register from './pages/Register';
 import Resorts from './pages/Resorts';
 import { Route, Routes } from 'react-router'
 import ResortDetails from './pages/ResortDetails';
+import { useState, useEffect } from 'react';
+import { CheckSession } from './services/AuthServices'
+import { Link } from 'react-router-dom';
 
 
-function App() {
-  return (
+const App = () => {
+
+  const [authenticated, toggleAuthenticated] = useState(false)
+  const [user, setUser] = useState(null)
+  // if (user && authenticated) { console.log() }
+
+  const handleLogOut = () => {
+    //Reset all auth related state and clear localStorage
+    setUser(null)
+    toggleAuthenticated(false)
+    localStorage.clear()
+  }
+
+  const checkToken = async () => {
+    //If a token exists, sends token to localStorage to persist logged in user
+    const user = await CheckSession()
+    setUser(user)
+    toggleAuthenticated(true)
+  }
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    // Check if token exists before requesting to validate the token
+    if (token) {
+      checkToken()
+    }
+  }, [])
+
+  return user && authenticated ? (
     <div className="App">
       <header>
         <Nav />
@@ -23,7 +53,8 @@ function App() {
           />
           <Route
             path="/login"
-            element={<LogIn />}
+            element={<LogIn setUser={setUser}
+              toggleAuthenticated={toggleAuthenticated} />}
           />
           <Route
             path="/register"
@@ -33,11 +64,18 @@ function App() {
             path="/resorts"
             element={<Resorts />}
           />
-          <Route path="/resorts/:id" element={<ResortDetails />} />
+          <Route path="/resorts/:id" element={<ResortDetails setUser={setUser}
+            user={user}
+            toggleAuthenticated={toggleAuthenticated} />} />
         </Routes>
       </main>
     </div>
-  );
+  ) : (
+    <div>
+      <h1>login</h1>
+      <Link to="/login">Login</Link>
+    </div>
+  )
 }
 
 export default App;
