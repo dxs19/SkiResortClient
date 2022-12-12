@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
-import Register from '../pages/Register'
 
-const Nav = ({ user, authenticated }) => {
+const Nav = ({ user, authenticated, handleLogOut }) => {
     // let authenticatedOptions
     // if (user) {
     //     authenticatedOptions = (
@@ -19,6 +18,7 @@ const Nav = ({ user, authenticated }) => {
     //         <Link to="/"></Link>
     //     </nav>
     // )
+
     return (<nav>
         <div>
             <h3>Welcome!</h3>
@@ -26,6 +26,9 @@ const Nav = ({ user, authenticated }) => {
             <Link to='/register'>Register</Link>
             <Link to='/'>Home</Link>
             <Link to='/resorts'>All Ski Resorts</Link>
+            <Link onClick={handleLogOut} to="/">
+                Sign Out
+            </Link>
         </div>
         {/* {authenticated && user ? authenticatedOptions : publicOptions} */}
     </nav>

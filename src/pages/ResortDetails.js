@@ -19,9 +19,9 @@ const ResortDetails = (props) => {
 
 
     const [resorts, setResorts] = useState({})
-    const [comment, setComment] = useState([{ review: "no comments" }])
+    // const [comment, setComment] = useState([{ review: "no comments" }])
     const [formState, setFormState] = useState({
-        userId: props.user.id,
+        // userId: props.user.id,
         resortId: id,
         review: ''
     })
@@ -42,7 +42,7 @@ const ResortDetails = (props) => {
 
         }
         detailsCall()
-    },)
+    }, [])
 
 
     const handleSubmit = async (e, id) => {

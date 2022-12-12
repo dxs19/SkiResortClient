@@ -15,7 +15,7 @@ const App = () => {
 
   const [authenticated, toggleAuthenticated] = useState(false)
   const [user, setUser] = useState(null)
-  // if (user && authenticated) { console.log() }
+  if (user && authenticated) { console.log() }
 
   const handleLogOut = () => {
     //Reset all auth related state and clear localStorage
@@ -39,17 +39,22 @@ const App = () => {
     }
   }, [])
 
-  return user && authenticated ? (
+  return (
     <div className="App">
       <header>
-        <Nav />
+        <Nav handleLogOut={handleLogOut} />
+        {user && authenticated ? `signed in as: ${user.email}` :
+          "Please sign in"}
       </header>
 
       <main>
+
         <Routes>
           <Route
             path="/"
-            element={<Home />}
+            element={<Home
+              user={user}
+              toggleAuthenticated={toggleAuthenticated} />}
           />
           <Route
             path="/login"
@@ -66,16 +71,18 @@ const App = () => {
           />
           <Route path="/resorts/:id" element={<ResortDetails setUser={setUser}
             user={user}
-            toggleAuthenticated={toggleAuthenticated} />} />
+            toggleAuthenticated={toggleAuthenticated}
+            authenticated={authenticated} />} />
         </Routes>
       </main>
-    </div>
-  ) : (
-    <div>
-      <h1>login</h1>
-      <Link to="/login">Login</Link>
-    </div>
-  )
+    </div>);
+  // ) : (
+  //   <div>
+  //     <h1>login</h1>
+  //     <Link to='/login'>Sign In</Link>
+
+  //   </div>
+  // )
 }
 
 export default App;
