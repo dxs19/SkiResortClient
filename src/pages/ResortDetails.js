@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
 import { createComment } from '../services/CommentServices'
+import { UpdateResort } from '../services/ResortServices'
 const ResortDetails = (props) => {
     let { id } = useParams()
     let navigate = useNavigate()
@@ -13,7 +14,7 @@ const ResortDetails = (props) => {
 
 
 
-
+    const [updatingComment, updateComment] = useState({})
     const [resorts, setResorts] = useState({})
     const [formState, setFormState] = useState({
         review: '',
@@ -40,17 +41,26 @@ const ResortDetails = (props) => {
     const handleSubmit = async (e, id) => {
         e.preventDefault()
         await axios.post(`http://localhost:3001/api/comments/addComment`, formState)
-        // await axios.get(`http://localhost:3001/api/resorts/${id}`)
         setFormState(formState)
     }
     const handleChange = (event) => {
         setFormState({ ...formState, [event.target.id]: event.target.value })
     }
 
-    // const onClick = (id) => {
-    //     console.log(id)
-    //     setUserToEdit(id)
-    // }
+    const handleUpdate = async (event, id) => {
+        event.preventDefault()
+        let response = await axios.put(
+            `http://localhost:3001/api/comments/${comment.id}`,
+            formState
+        )
+        updateComment([updatingComment, response])
+        setFormState({
+            review: '',
+            userId: props.user?.id,
+            resortId: id
+        })
+    }
+
 
 
 
@@ -70,7 +80,10 @@ const ResortDetails = (props) => {
                 <div>
                     {resorts.Comments?.map((comment) => (
                         <div key={comment.id}>
-                            <p>{comment.review}</p>
+                            <div>
+                                <h3>{comment.review}</h3>
+                                <button onClick={<UpdateResort />}>Update Review</button>
+                            </div>
 
                         </div>
                     ))} </div>
@@ -85,6 +98,9 @@ const ResortDetails = (props) => {
                     <button type="submit">Add Review</button>
 
                 </form>
+                <div>
+                    {/* <UpdateResort /> */}
+                </div>
 
             </div>
         </div>

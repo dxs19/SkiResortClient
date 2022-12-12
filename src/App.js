@@ -9,6 +9,7 @@ import ResortDetails from './pages/ResortDetails';
 import { useState, useEffect } from 'react';
 import { CheckSession } from './services/AuthServices'
 import { Link } from 'react-router-dom';
+import UpdateForm from './components/UpdateComment';
 
 
 const App = () => {
@@ -72,7 +73,8 @@ const App = () => {
           <Route path="/resorts/:id" element={<ResortDetails setUser={setUser}
             user={user}
             toggleAuthenticated={toggleAuthenticated}
-            authenticated={authenticated} />} />
+            authenticated={authenticated}
+            UpdateForm={UpdateForm} />} />
         </Routes>
       </main>
     </div>);
