@@ -7,7 +7,7 @@ const ResortDetails = (props) => {
     let { id } = useParams()
     let navigate = useNavigate()
     if (props.user && props.authenticated) { console.log(props.user.id) }
-
+    console.log(id)
 
 
 
@@ -16,11 +16,11 @@ const ResortDetails = (props) => {
 
     const [resorts, setResorts] = useState({})
     const [formState, setFormState] = useState({
+        review: '',
         userId: props.user?.id,
-        resortId: id,
-        review: ''
+        resortId: id
     })
-    const [comments, updateComments] = useState([])
+    // const [comments, updateComments] = useState([])
     const [userToEdit, setUserToEdit] = useState()
 
 
@@ -40,11 +40,11 @@ const ResortDetails = (props) => {
     const handleSubmit = async (e, id) => {
         e.preventDefault()
         await axios.post(`http://localhost:3001/api/comments/addComment`, formState)
-        await axios.get(`http://localhost:3001/api/resorts/${id}`)
+        // await axios.get(`http://localhost:3001/api/resorts/${id}`)
         setFormState(formState)
     }
-    const handleChange = (e) => {
-        setFormState({ ...formState, [e.target.id]: e.target.value })
+    const handleChange = (event) => {
+        setFormState({ ...formState, [event.target.id]: event.target.value })
     }
 
     // const onClick = (id) => {
@@ -71,17 +71,20 @@ const ResortDetails = (props) => {
                     {resorts.Comments?.map((comment) => (
                         <div key={comment.id}>
                             <p>{comment.review}</p>
-                            <form onSubmit={handleSubmit} className="form-list">
-                                <input className='input'
-                                    type='text'
-                                    value={comment.review}
-                                    placeholder='review'
-                                    onChange={handleChange}
-                                />
-                            </form>
+
                         </div>
                     ))} </div>
+                <form onSubmit={handleSubmit} className="form-list">
+                    <label htmlFor='review'>Review:</label>
+                    <input className='input'
+                        id="review"
+                        value={formState.review}
+                        placeholder='review'
+                        onChange={handleChange}
+                    />
+                    <button type="submit">Add Review</button>
 
+                </form>
 
             </div>
         </div>
