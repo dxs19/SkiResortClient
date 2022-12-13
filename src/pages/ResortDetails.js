@@ -40,19 +40,14 @@ const ResortDetails = (props) => {
         }
         detailsCall()
     }, [])
-    // useEffect(() => {
-    //     const deleteComment = async () => {
-    //         handleDelete()
-    //     }
-    //     deleteComment()
-    // },)
-
-    // useEffect(() => {
-    //     handleSubmit()
-    // },)
-
 
     let deleteId =
+        resorts.Comments?.map((comment) => {
+            return comment.id
+        }
+        )
+
+    let updateId =
         resorts.Comments?.map((comment) => {
             return comment.id
         }
@@ -74,19 +69,19 @@ const ResortDetails = (props) => {
         setFormState({ ...formState, [event.target.id]: event.target.value })
     }
 
-    // const handleUpdate = async (event, id) => {
-    //     event.preventDefault()
-    //     let response = await axios.put(
-    //         `http://localhost:3001/api/comments/${Comments.id}`,
-    //         formState
-    //     )
-    //     updateComment([updatingComment, response])
-    //     setFormState({
-    //         review: '',
-    //         userId: props.user?.id,
-    //         resortId: id
-    //     })
-    // }
+    const handleUpdate = async (event, id) => {
+        event.preventDefault()
+        let response = await axios.put(
+            `http://localhost:3001/api/comments/${updateId}`,
+            formState
+        )
+        updateComment([updatingComment, response])
+        setFormState({
+            review: '',
+            userId: props.user?.id,
+            resortId: id
+        })
+    }
     let updateButton = () => {
         resorts.Comments?.map((comment) => {
             if (props.user?.id === comment.userId) { return id = "updateButton" }
@@ -96,24 +91,16 @@ const ResortDetails = (props) => {
         })
     }
 
-    // const isPoster = () => {
-    //     resorts.Comments?.map((comment) => {
-    //         if (props.user?.id === comment.userId) {
-    //             return async (id) => {
-    //                 await axios.delete(
-    //                     `http://localhost:3001/api/comments/${id}`
-    //                 )
-    //             }
-    //         }
-    //         else {
-    //             alert('unathorized')
-    //         }
-    //     })
-    // }
-    let isPoster = resorts.Comments?.map((comment) => {
-        return props.user?.id === comment.userId
-    })
 
+    const [popUp, setPopUp] = useState(false)
+    const togglePopUp = () => {
+        setPopUp(!popUp)
+    }
+    if (popUp) {
+        document.body.classList.add('active-popUp')
+    } else {
+        document.body.classList.remove('active-popUp')
+    }
 
 
 
@@ -136,10 +123,25 @@ const ResortDetails = (props) => {
                         <div key={comment.id} id="updateButton">
                             <div>
                                 <h3>{comment.review}</h3>
-                                <button disabled={props.user?.id !== comment.userId} onClick={() => updateButton(comment.id)}>Update Comment</button>
+                                <button disabled={props.user?.id !== comment.userId} onClick={togglePopUp}>Update Comment</button>
                                 <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)}>Delete</button>
                             </div>
 
+                            {popUp && (<form onSubmit={(event) => {
+                                handleUpdate(event, comment.id)
+                            }} className="update-form">
+                                <label htmlFor='review'>Review:</label>
+                                <input className='input'
+                                    id="review"
+                                    value={formState.review}
+                                    placeholder='review'
+                                    onChange={handleChange}
+                                />
+                                <button type="submit">Update Review</button>
+                                <button className="close-popUp" onClick={togglePopUp}>
+                                    CLOSE
+                                </button>
+                            </form>)}
                         </div>
                     ))} </div>
                 <form onSubmit={handleSubmit} className="form-list">
@@ -154,7 +156,6 @@ const ResortDetails = (props) => {
 
                 </form>
                 <div>
-                    {/* <UpdateResort /> */}
                 </div>
 
             </div>
