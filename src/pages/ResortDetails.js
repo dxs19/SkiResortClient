@@ -2,6 +2,7 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
+import UpdateForm from '../components/UpdateComment'
 import { createComment } from '../services/CommentServices'
 import { UpdateResort } from '../services/ResortServices'
 const ResortDetails = (props) => {
@@ -21,6 +22,9 @@ const ResortDetails = (props) => {
         userId: props.user?.id,
         resortId: id
     })
+    // const [comment, deleteComment] = useState({
+    //     comment: comments?.id
+    // })
     // const [comments, updateComments] = useState([])
     const [userToEdit, setUserToEdit] = useState()
 
@@ -36,7 +40,30 @@ const ResortDetails = (props) => {
         }
         detailsCall()
     }, [])
+    // useEffect(() => {
+    //     const deleteComment = async () => {
+    //         handleDelete()
+    //     }
+    //     deleteComment()
+    // },)
 
+    // useEffect(() => {
+    //     handleSubmit()
+    // },)
+
+
+    let deleteId =
+        resorts.Comments?.map((comment) => {
+            return comment.id
+        }
+        )
+
+    const handleDelete = async () => {
+        console.log(deleteId)
+        await axios.delete(
+            `http://localhost:3001/api/comments/${deleteId}`
+        )
+    }
 
     const handleSubmit = async (e, id) => {
         e.preventDefault()
@@ -47,19 +74,46 @@ const ResortDetails = (props) => {
         setFormState({ ...formState, [event.target.id]: event.target.value })
     }
 
-    const handleUpdate = async (event, id) => {
-        event.preventDefault()
-        let response = await axios.put(
-            `http://localhost:3001/api/comments/${comment.id}`,
-            formState
-        )
-        updateComment([updatingComment, response])
-        setFormState({
-            review: '',
-            userId: props.user?.id,
-            resortId: id
+    // const handleUpdate = async (event, id) => {
+    //     event.preventDefault()
+    //     let response = await axios.put(
+    //         `http://localhost:3001/api/comments/${Comments.id}`,
+    //         formState
+    //     )
+    //     updateComment([updatingComment, response])
+    //     setFormState({
+    //         review: '',
+    //         userId: props.user?.id,
+    //         resortId: id
+    //     })
+    // }
+    let updateButton = () => {
+        resorts.Comments?.map((comment) => {
+            if (props.user?.id === comment.userId) { return id = "updateButton" }
+            else {
+                return ''
+            }
         })
     }
+
+    // const isPoster = () => {
+    //     resorts.Comments?.map((comment) => {
+    //         if (props.user?.id === comment.userId) {
+    //             return async (id) => {
+    //                 await axios.delete(
+    //                     `http://localhost:3001/api/comments/${id}`
+    //                 )
+    //             }
+    //         }
+    //         else {
+    //             alert('unathorized')
+    //         }
+    //     })
+    // }
+    let isPoster = resorts.Comments?.map((comment) => {
+        return props.user?.id === comment.userId
+    })
+
 
 
 
@@ -79,10 +133,11 @@ const ResortDetails = (props) => {
             <div> <h3>Comments:</h3>
                 <div>
                     {resorts.Comments?.map((comment) => (
-                        <div key={comment.id}>
+                        <div key={comment.id} id="updateButton">
                             <div>
                                 <h3>{comment.review}</h3>
-                                <button onClick={<UpdateResort />}>Update Review</button>
+                                <button onClick={() => updateButton(comment.id)}>Update Comment</button>
+                                <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)}>Delete</button>
                             </div>
 
                         </div>
@@ -103,7 +158,7 @@ const ResortDetails = (props) => {
                 </div>
 
             </div>
-        </div>
+        </div >
     )
 }
 export default ResortDetails
