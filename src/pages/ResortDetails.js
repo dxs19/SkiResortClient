@@ -2,19 +2,17 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom'
-import UpdateForm from '../components/UpdateComment'
-import { createComment } from '../services/CommentServices'
-import { UpdateResort } from '../services/ResortServices'
+
 const ResortDetails = (props) => {
     let { id } = useParams()
     let navigate = useNavigate()
     if (props.user && props.authenticated) { console.log(props.user.id) }
-    console.log(id)
 
 
 
 
 
+    const [toggle, setToggle] = useState(false)
     const [updatingComment, updateComment] = useState({})
     const [resorts, setResorts] = useState({})
     const [formState, setFormState] = useState({
@@ -22,10 +20,6 @@ const ResortDetails = (props) => {
         userId: props.user?.id,
         resortId: id
     })
-    // const [comment, deleteComment] = useState({
-    //     comment: comments?.id
-    // })
-    // const [comments, updateComments] = useState([])
     const [userToEdit, setUserToEdit] = useState()
 
 
@@ -39,38 +33,31 @@ const ResortDetails = (props) => {
             setResorts(res.data)
         }
         detailsCall()
-    }, [])
+    }, [toggle])
 
-    let deleteId =
-        resorts.Comments?.map((comment) => {
-            return comment.id
-        }
-        )
 
-    let updateId =
-        resorts.Comments?.map((comment) => {
-            return comment.id
-        }
-        )
 
-    const handleDelete = async () => {
+    const handleDelete = async (deleteId) => {
         console.log(deleteId)
         await axios.delete(
             `http://localhost:3001/api/comments/${deleteId}`
         )
+        setToggle(!toggle)
     }
 
     const handleSubmit = async (e, id) => {
         e.preventDefault()
-        await axios.post(`http://localhost:3001/api/comments/addComment`, formState)
+        let submit = await axios.post(`http://localhost:3001/api/comments/addComment`, formState)
         setFormState(formState)
+        submit.value = ''
     }
     const handleChange = (event) => {
         setFormState({ ...formState, [event.target.id]: event.target.value })
     }
 
-    const handleUpdate = async (event, id) => {
+    const handleUpdate = async (event, updateId) => {
         event.preventDefault()
+        console.log(updateId)
         let response = await axios.put(
             `http://localhost:3001/api/comments/${updateId}`,
             formState
@@ -81,6 +68,7 @@ const ResortDetails = (props) => {
             userId: props.user?.id,
             resortId: id
         })
+        setToggle(!toggle)
     }
     let updateButton = () => {
         resorts.Comments?.map((comment) => {
@@ -123,13 +111,15 @@ const ResortDetails = (props) => {
                         <div key={comment.id} id="updateButton">
                             <div>
                                 <h3>{comment.review}</h3>
+                                <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)} >Delete </button>
                                 <button disabled={props.user?.id !== comment.userId} onClick={togglePopUp}>Update Comment</button>
-                                <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)}>Delete</button>
                             </div>
 
-                            {popUp && (<form onSubmit={(event) => {
-                                handleUpdate(event, comment.id)
-                            }} className="update-form">
+                            {popUp && (<form
+                                onSubmit=
+                                {(event) => {
+                                    handleUpdate(event, comment.id)
+                                }} className="update-form">
                                 <label htmlFor='review'>Review:</label>
                                 <input className='input'
                                     id="review"
@@ -139,7 +129,7 @@ const ResortDetails = (props) => {
                                 />
                                 <button type="submit">Update Review</button>
                                 <button className="close-popUp" onClick={togglePopUp}>
-                                    CLOSE
+                                    Close
                                 </button>
                             </form>)}
                         </div>
