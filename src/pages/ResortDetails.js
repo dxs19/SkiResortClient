@@ -136,7 +136,7 @@ const ResortDetails = (props) => {
                         <div key={comment.id} id="updateButton">
                             <div>
                                 <h3>{comment.review}</h3>
-                                <button onClick={() => updateButton(comment.id)}>Update Comment</button>
+                                <button disabled={props.user?.id !== comment.userId} onClick={() => updateButton(comment.id)}>Update Comment</button>
                                 <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)}>Delete</button>
                             </div>
 
