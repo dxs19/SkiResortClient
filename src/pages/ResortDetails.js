@@ -9,9 +9,6 @@ const ResortDetails = (props) => {
     if (props.user && props.authenticated) { console.log(props.user.id) }
 
 
-
-
-
     const [toggle, setToggle] = useState(false)
     const [updatingComment, updateComment] = useState({})
     const [resorts, setResorts] = useState({})
@@ -20,15 +17,13 @@ const ResortDetails = (props) => {
         userId: props.user?.id,
         resortId: id
     })
-    const [userToEdit, setUserToEdit] = useState()
-
 
 
     useEffect(() => {
         const detailsCall = async () => {
             let res = await axios
                 .get(
-                    `http://localhost:3001/api/resorts/${id}`
+                    `https://skiresort-backend.herokuapp.com/api/resorts/${id}`
                 )
             setResorts(res.data)
         }
@@ -40,16 +35,16 @@ const ResortDetails = (props) => {
     const handleDelete = async (deleteId) => {
         console.log(deleteId)
         await axios.delete(
-            `http://localhost:3001/api/comments/${deleteId}`
+            `https://skiresort-backend.herokuapp.com/api/comments/${deleteId}`
         )
         setToggle(!toggle)
     }
 
     const handleSubmit = async (e, id) => {
         e.preventDefault()
-        let submit = await axios.post(`http://localhost:3001/api/comments/addComment`, formState)
+        let submit = await axios.post(`https://skiresort-backend.herokuapp.com/api/comments/addComment`, formState)
         setFormState(formState)
-        submit.value = ''
+        setToggle(!toggle)
     }
     const handleChange = (event) => {
         setFormState({ ...formState, [event.target.id]: event.target.value })
@@ -59,7 +54,7 @@ const ResortDetails = (props) => {
         event.preventDefault()
         console.log(updateId)
         let response = await axios.put(
-            `http://localhost:3001/api/comments/${updateId}`,
+            `https://skiresort-backend.herokuapp.com/api/comments/${updateId}`,
             formState
         )
         updateComment([updatingComment, response])
@@ -70,15 +65,6 @@ const ResortDetails = (props) => {
         })
         setToggle(!toggle)
     }
-    let updateButton = () => {
-        resorts.Comments?.map((comment) => {
-            if (props.user?.id === comment.userId) { return id = "updateButton" }
-            else {
-                return ''
-            }
-        })
-    }
-
 
     const [popUp, setPopUp] = useState(false)
     const togglePopUp = () => {
@@ -89,9 +75,6 @@ const ResortDetails = (props) => {
     } else {
         document.body.classList.remove('active-popUp')
     }
-
-
-
 
 
     return (
@@ -111,8 +94,8 @@ const ResortDetails = (props) => {
                         <div key={comment.id} id="updateButton">
                             <div>
                                 <h3>{comment.review}</h3>
-                                <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)} >Delete </button>
-                                <button disabled={props.user?.id !== comment.userId} onClick={togglePopUp}>Update Comment</button>
+                                <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)} > Delete </button>
+                                <button disabled={props.user?.id !== comment.userId} onClick={() => togglePopUp(comment.id)}> Update Comment </button>
                             </div>
 
                             {popUp && (<form

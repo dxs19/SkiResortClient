@@ -22,7 +22,7 @@ const Resorts = () => {
 
 
     return (<div>
-        {/* <Search /> */}
+
         <h1>List of Resorts:</h1>
         <div className="resort-container">
             {resorts.map((resort) => (
