@@ -4,7 +4,24 @@ import { useNavigate } from 'react-router-dom'
 import Search from '../components/Search'
 const Resorts = () => {
     let navigate = useNavigate()
+    // const [data, setData] = useState({})
     const [resorts, setResorts] = useState([])
+    const [wordEntered, setWordEntered] = useState("");
+
+    const handleFilter = (event) => {
+        const searchWord = event.target.value
+        setWordEntered(searchWord)
+        const newFilter = resorts.filter((value) => {
+            return (value.name.toLowerCase().includes(searchWord.toLowerCase())
+            )
+        })
+        if (searchWord === "") {
+            setResorts([]);
+        } else {
+            setResorts(newFilter);
+        }
+    }
+
 
     const showAllResorts = async () => {
         const data = await GetResorts()
@@ -24,11 +41,20 @@ const Resorts = () => {
     return (<div>
 
         <h1>List of Resorts:</h1>
+        <div className="searchInputs"> </div>
+        <div className='dataResults'>
+            <input type="text"
+                value={wordEntered}
+                onChange={() => handleFilter(resorts)} />
+            <div className='Search Icon'>
+            </div>
+        </div>
+
         <div className="resort-container">
             {resorts.map((resort) => (
                 <div key={resort.id}>
-                    <h2>{resort.name}</h2>
-                    <img src={resort.image} />
+                    <h2 className="resort-name">Resort Name: {resort.name}</h2>
+                    <h2 className='resort-location'>Resort Location: {resort.location}</h2>
                     <button onClick={() => viewDetails(resort.id)}>Click to go to Resort Page</button>
                 </div>
 

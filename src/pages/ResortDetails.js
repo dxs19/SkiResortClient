@@ -12,6 +12,7 @@ const ResortDetails = (props) => {
     const [toggle, setToggle] = useState(false)
     const [updatingComment, updateComment] = useState({})
     const [resorts, setResorts] = useState({})
+    const [weather, setWeather] = useState({})
     const [formState, setFormState] = useState({
         review: '',
         userId: props.user?.id,
@@ -31,6 +32,17 @@ const ResortDetails = (props) => {
     }, [toggle])
 
 
+
+
+
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${resorts.longitude}&units=imperial&appid=${process.env.REACT_APP_WEATHER_KEY}`
+
+
+
+    let weatherReport = axios.get(url).then((response) => {
+        setWeather(response.data)
+        console.log(response.data)
+    })
 
     const handleDelete = async (deleteId) => {
         console.log(deleteId)
@@ -80,6 +92,9 @@ const ResortDetails = (props) => {
     return (
         <div>
             <button onClick={() => navigate('/resorts')} className="back-btn">Back to Resorts</button>
+            <div className="temp">
+                {weather.main ? <h1>{weather.main.temp.toFixed()}°F</h1> : null}
+            </div>
 
             <h1>{resorts.name}</h1>
             <img src={resorts.image} />

@@ -47,6 +47,7 @@
   -o-background-size: cover;
   background-size: cover;
   height: 800px;
+  padding-top: 0px;
 }
 
 .background-tint {
@@ -54,6 +55,25 @@
   background-blend-mode: multiply;
   /* opacity: .6; */
 }
+
+
+/* .resort-location {
+  float: right
+}
+
+.resort-name {
+  float: left
+} */
+
+.resort-container {
+  width: 100%;
+  border: #282c34;
+  border-radius: 10px;
+  left: 100%;
+  margin-top: 50px;
+}
+
+
 
 nav {
   text-decoration: none;
@@ -64,7 +84,8 @@ nav {
   font-size: 1.2em;
   background-color: #6494a1;
   height: 80px;
-  width: 100%
+  width: 100%;
+  margin-bottom: 0px
 }
 
 nav a,

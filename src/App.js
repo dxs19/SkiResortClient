@@ -48,9 +48,7 @@ const App = () => {
           toggleAuthenticated={toggleAuthenticated}
           authenticated={authenticated} />
       </header>
-
       <main>
-
         <Routes>
           <Route
             path="/"
