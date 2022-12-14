@@ -59,9 +59,12 @@ nav {
   text-decoration: none;
   color: black;
   margin-right: 1em;
+  position: static;
   display: flex;
   font-size: 1.2em;
-  background-color: #61dafb;
+  background-color: #6494a1;
+  height: 80px;
+  width: 100%
 }
 
 nav a,

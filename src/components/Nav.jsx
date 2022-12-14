@@ -12,7 +12,8 @@ const Nav = ({ user, authenticated, handleLogOut }) => {
             <Link onClick={handleLogOut} to="/">
                 Sign Out
             </Link>
-
+            {user && authenticated ? `Signed In As: ${user.email}` :
+                "Please sign in"}
         </div>
     </nav>
     )

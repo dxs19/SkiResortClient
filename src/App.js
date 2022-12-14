@@ -45,9 +45,8 @@ const App = () => {
       <header>
         <Nav handleLogOut={handleLogOut}
           user={user}
-          toggleAuthenticated={toggleAuthenticated} />
-        {user && authenticated ? `signed in as: ${user.email}` :
-          "Please sign in"}
+          toggleAuthenticated={toggleAuthenticated}
+          authenticated={authenticated} />
       </header>
 
       <main>
