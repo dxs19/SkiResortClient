@@ -40,14 +40,19 @@
 
 
 
-.home-page {
+.box {
   background-image: url("https://media.istockphoto.com/id/1252960723/photo/skiing-fresh-powder-on-a-ski-vacation.jpg?b=1&s=170667a&w=0&k=20&c=qXtlMm2foFpC-XsWCAXIrM39cf4168vvxz-VgR4T7vQ=");
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
   height: 800px;
-  opacity: .6
+}
+
+.background-tint {
+  background-color: whitesmoke;
+  background-blend-mode: multiply;
+  /* opacity: .6; */
 }
 
 nav {

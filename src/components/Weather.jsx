@@ -24,7 +24,7 @@ function Weather() {
     return (
         <div className="app">
             <div className="search">
-                <input
+                <h4>Enter Location to Find Weather in Your Area:</h4> <input
                     value={location}
                     onChange={event => setLocation(event.target.value)}
                     onKeyPress={searchLocation}
