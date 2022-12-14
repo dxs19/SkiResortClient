@@ -17,7 +17,7 @@ function Weather() {
     const handleChange = (event) => {
         setLocation({ ...location, [event.target.id]: event.target.value })
     }
-    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=c9f1d46755990cc84bab1907357b5202`
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=imperial&appid=${process.env.REACT_APP_WEATHER_KEY}`
 
 
 
