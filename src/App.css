@@ -179,6 +179,11 @@
   z-index: 99;
 }
 
+.comments {
+  float: left;
+  clear: left;
+}
+
 .background-tint {
   background-color: whitesmoke;
   background-blend-mode: multiply;

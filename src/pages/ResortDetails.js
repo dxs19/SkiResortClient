@@ -138,7 +138,7 @@ const ResortDetails = (props) => {
                     </div>
                 </div>
 
-                <div> <h3>Comments:</h3>
+                <div className='comments'> <h3>Comments:</h3>
                     <div>
                         {resorts.Comments?.map((comment) => (
                             <div key={comment.id} id="updateButton">
