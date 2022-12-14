@@ -52,10 +52,11 @@ const Resorts = () => {
 
         <div className="resort-container">
             {resorts.map((resort) => (
-                <div key={resort.id}>
-                    <h2 className="resort-name">Resort Name: {resort.name}</h2>
-                    <h2 className='resort-location'>Resort Location: {resort.location}</h2>
-                    <button onClick={() => viewDetails(resort.id)}>Click to go to Resort Page</button>
+                <div className='indvidual-resort' key={resort.id}>
+                    <h3 className="resort-name">Resort Name: {resort.name}</h3>
+                    <h4 className='resort-location'>Resort Location: {resort.location}</h4>
+                    <img className='resort-img' src={resort.image} />
+                    <button className='resort-btn' onClick={() => viewDetails(resort.id)}>Click to go to Resort Page</button>
                 </div>
 
             ))}

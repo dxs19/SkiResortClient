@@ -93,20 +93,29 @@ const ResortDetails = (props) => {
         <div>
             <button onClick={() => navigate('/resorts')}
                 className="back-btn">Back to Resorts</button>
-            <h1>{resorts.name}</h1>
-            <div className="temp">
-                {weather.main ? <h1>Current Temp: {weather.main.temp.toFixed()}°F</h1> : null}
-                <div className="description">
-                    {weather.weather ? <h1>Weather: {weather.weather[0].main}</h1> : null}
+
+            <div className='weather-container'>
+                <div className="temp">
+                    {weather.main ? <h1> {weather.main.temp.toFixed()}°F</h1> : null}
+                    <p>current temperature</p>
+                    <div className="description">
+                        {weather.weather ? <h1> {weather.weather[0].main}</h1> : null}
+                        <p>current weather</p>
+                    </div>
+                    <div className="wind">
+                        {weather.wind ? <p className='bold'>{weather.wind.speed.toFixed()} MPH</p> : null}
+                        <p>wind speed</p>
+                    </div>
                 </div>
             </div>
-
-
-            <img src={resorts.image} />
-            <h2>Resort Overview: {resorts.review}</h2>
-            <h2>Location: {resorts.location}</h2>
-            <h2>Height: {resorts.height}</h2>
-            <h2>Number of Lifts: {resorts.runs}</h2>
+            <div className='details-container'>
+                <h1>{resorts.name}</h1>
+                <img src={resorts.image} />
+                <h2>Resort Overview: {resorts.review}</h2>
+                <h2>Location: {resorts.location}</h2>
+                <h2>Height: {resorts.height}</h2>
+                <h2>Number of Lifts: {resorts.runs}</h2>
+            </div>
 
             <div> <h3>Comments:</h3>
                 <div>
