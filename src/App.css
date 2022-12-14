@@ -226,14 +226,12 @@
   height: 75px;
   padding-top: 0;
   padding-left: 0;
-  line-height: 1em;
 }
 
 .submit-review-btn {
   margin-top: 15px;
   margin-bottom: 20px;
   float: left;
-
   clear: left;
   font-size: 12px
 }
