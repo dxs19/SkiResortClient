@@ -101,7 +101,7 @@ const ResortDetails = (props) => {
                         <img src={generateIconUrl(weather.weather[0].icon)} /> : null
                     }
                     </div>
-                    <div className="description">
+                    <div className="description-weather">
                         {weather.weather ? <h1> {weather.weather[0].main}</h1> : null}
                         <p>current weather</p>
                     </div>
@@ -118,12 +118,23 @@ const ResortDetails = (props) => {
                 <div className='details-container'>
                     <button onClick={() => navigate('/resorts')}
                         className="back-btn">Back to Resorts</button>
-                    <h1>{resorts.name}</h1>
-                    <img src={resorts.image} />
-                    <h2>Resort Overview: {resorts.review}</h2>
-                    <h2>Location: {resorts.location}</h2>
-                    <h2>Height: {resorts.height}</h2>
-                    <h2>Number of Lifts: {resorts.runs}</h2>
+                    <div className='resort-title'>
+                        <h1 className='resort-place'>{resorts.name}</h1>
+                        <h2>Location: {resorts.location}</h2>
+                    </div>
+                    <div className='detail-img-container'>
+                        <img className='detail-img' src={resorts.image} />
+                    </div>
+                    <div className='description'>
+                        <h2>Resort Overview:
+                            <h4>{resorts.review}</h4>
+                        </h2>
+                    </div>
+                    <div className='resort-overview'>
+                        <h2 className='overview-txt'>Overview:</h2>
+                        <h2>Height: {resorts.height}</h2>
+                        <h2>Number of Lifts: {resorts.runs}</h2>
+                    </div>
                 </div>
 
                 <div> <h3>Comments:</h3>

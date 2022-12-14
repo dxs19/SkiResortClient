@@ -41,20 +41,25 @@
 .weather-container {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
   text-align: center;
-  color: #222427;
+  color: black;
+  align-items: center;
   margin-top: 60px;
   border: 2px solid black;
 }
 
 
+.resort-page {
+  padding-left: 60px;
+  padding-right: 60px;
+}
 
 .resort-container {
-
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   display: grid;
   grid-template-columns: 33% 33% 33%;
-  padding-left: 50px;
+  padding-left: 60px;
   padding-right: 60px;
   padding-top: 60px;
   /* border-radius: 2px; */
@@ -68,6 +73,27 @@
   background-color: rgb(182, 219, 244);
 }
 
+.description {
+  text-align: left;
+
+}
+
+.resort-title {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+}
+
+.resort-place {
+  text-decoration: underline
+}
+
+.description {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  position: relative;
+  font-size: small;
+  padding-left: 40px;
+
+}
+
 .resort-img {
   max-width: 100%;
   width: 300px;
@@ -76,9 +102,43 @@
   height: 250px;
   justify-content: center;
 
+
   /* align-content: center */
 }
 
+.resort-title {
+  padding-bottom: 20px;
+}
+
+/* .details-container {
+  padding: 5px
+} */
+
+.detail-img-container {
+  float: left;
+  margin-right: 10px;
+  border: 5px solid black;
+  margin: 20px
+}
+
+.resort-overview {
+  text-align: left;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-size: small;
+}
+
+.overview-txt {
+  text-decoration: underline;
+}
+
+.detail-img {
+  max-width: 100%;
+  width: 600px;
+  padding-bottom: 8px;
+  max-height: 100%;
+  height: 550px;
+  justify-content: left;
+}
 
 /* .resort-name {
   display: flex;
