@@ -52,7 +52,7 @@ const App = () => {
 
         <Routes>
           <Route
-            path="/"
+            path="/home"
             element={<Home
               user={user}
               toggleAuthenticated={toggleAuthenticated} />}

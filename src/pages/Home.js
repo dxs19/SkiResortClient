@@ -1,7 +1,9 @@
-
+import Weather from "../components/Weather"
 const Home = (props) => {
-    (<div>
-        <h3> Homepage</h3>    </div>
+    return (<div>
+        <h1> Homepage</h1>
+        <Weather />
+    </div>
     )
 }
 
