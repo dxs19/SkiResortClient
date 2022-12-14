@@ -43,7 +43,9 @@ const App = () => {
   return (
     <div className="App">
       <header>
-        <Nav handleLogOut={handleLogOut} />
+        <Nav handleLogOut={handleLogOut}
+          user={user}
+          toggleAuthenticated={toggleAuthenticated} />
         {user && authenticated ? `signed in as: ${user.email}` :
           "Please sign in"}
       </header>
@@ -55,7 +57,8 @@ const App = () => {
             path="/home"
             element={<Home
               user={user}
-              toggleAuthenticated={toggleAuthenticated} />}
+              toggleAuthenticated={toggleAuthenticated}
+              authenticated={authenticated} />}
           />
           <Route
             path="/login"

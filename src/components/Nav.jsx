@@ -1,26 +1,9 @@
 import { Link } from 'react-router-dom'
 
-const Nav = ({ user, authenticated, handleLogOut }) => {
-    // let authenticatedOptions
-    // if (user) {
-    //     authenticatedOptions = (
-    //         <nav>
-    //             <h3>Welcome {user.email}!</h3>
-    //             {/* <Link to="/">Feed</Link> */}
-    //             {/* <Link onClick={handleLogOut} to="/">
-    //       Sign Out
-    //     </Link> */}
-    //         </nav>
-    //     )
-    // }
-    // const publicOptions = (
-    //     <nav>
-    //         <Link to="/"></Link>
-    //     </nav>
-    // )
+const Nav = ({ user, authenticated, handleLogOut, props }) => {
 
     return (<nav>
-        <div>
+        <div className='div'>
             <h3>Welcome!</h3>
             <Link to='/login'>Sign In</Link>
             <Link to='/register'>Register</Link>
@@ -29,8 +12,8 @@ const Nav = ({ user, authenticated, handleLogOut }) => {
             <Link onClick={handleLogOut} to="/">
                 Sign Out
             </Link>
+
         </div>
-        {/* {authenticated && user ? authenticatedOptions : publicOptions} */}
     </nav>
     )
 }
