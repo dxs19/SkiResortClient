@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { SignInUser } from '../services/AuthServices'
 import { useNavigate } from 'react-router-dom'
-
-const LogIn = ({ setUser, toggleAuthenticated }) => {
+//comment 
+const Login = ({ setUser, toggleAuthenticated }) => {
     let navigate = useNavigate()
     const [formValues, setFormValues] = useState({ email: '', password: '' })
 
@@ -53,4 +53,4 @@ const LogIn = ({ setUser, toggleAuthenticated }) => {
     )
 }
 
-export default LogIn
+export default Login

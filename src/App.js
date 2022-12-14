@@ -1,7 +1,7 @@
 import './App.css';
 import Nav from './components/Nav';
 import Home from './pages/Home';
-import LogIn from './pages/Login';
+import Login from './pages/Login';
 import Register from './pages/Register';
 import Resorts from './pages/Resorts';
 import { Route, Routes } from 'react-router'
@@ -62,7 +62,7 @@ const App = () => {
           />
           <Route
             path="/login"
-            element={<LogIn setUser={setUser}
+            element={<Login setUser={setUser}
               toggleAuthenticated={toggleAuthenticated} />}
           />
           <Route
