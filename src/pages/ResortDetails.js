@@ -92,81 +92,84 @@ const ResortDetails = (props) => {
 
 
     return (
-        <div>
-            <button onClick={() => navigate('/resorts')}
-                className="back-btn">Back to Resorts</button>
 
-            <div className='weather-container'>
-                <div> {weather.weather ?
-                    <img src={generateIconUrl(weather.weather[0].icon)} /> : null
-                }
+        <div className='resort-page'>
+
+            <div>
+                <div className='weather-container'>
+                    <div> {weather.weather ?
+                        <img src={generateIconUrl(weather.weather[0].icon)} /> : null
+                    }
+                    </div>
+                    <div className="description">
+                        {weather.weather ? <h1> {weather.weather[0].main}</h1> : null}
+                        <p>current weather</p>
+                    </div>
+                    <div className="temp">
+                        {weather.main ? <h1> {weather.main.temp.toFixed()}°F</h1> : null}
+                        <p>current temperature</p>
+                    </div>
+                    <div className="wind">
+                        {weather.wind ? <p className='bold'>{weather.wind.speed.toFixed()} MPH</p> : null}
+                        <p>wind speed</p>
+                    </div>
+
                 </div>
-                <div className="description">
-                    {weather.weather ? <h1> {weather.weather[0].main}</h1> : null}
-                    <p>current weather</p>
-                </div>
-                <div className="temp">
-                    {weather.main ? <h1> {weather.main.temp.toFixed()}°F</h1> : null}
-                    <p>current temperature</p>
-                </div>
-                <div className="wind">
-                    {weather.wind ? <p className='bold'>{weather.wind.speed.toFixed()} MPH</p> : null}
-                    <p>wind speed</p>
+                <div className='details-container'>
+                    <button onClick={() => navigate('/resorts')}
+                        className="back-btn">Back to Resorts</button>
+                    <h1>{resorts.name}</h1>
+                    <img src={resorts.image} />
+                    <h2>Resort Overview: {resorts.review}</h2>
+                    <h2>Location: {resorts.location}</h2>
+                    <h2>Height: {resorts.height}</h2>
+                    <h2>Number of Lifts: {resorts.runs}</h2>
                 </div>
 
-            </div>
-            <div className='details-container'>
-                <h1>{resorts.name}</h1>
-                <img src={resorts.image} />
-                <h2>Resort Overview: {resorts.review}</h2>
-                <h2>Location: {resorts.location}</h2>
-                <h2>Height: {resorts.height}</h2>
-                <h2>Number of Lifts: {resorts.runs}</h2>
-            </div>
+                <div> <h3>Comments:</h3>
+                    <div>
+                        {resorts.Comments?.map((comment) => (
+                            <div key={comment.id} id="updateButton">
+                                <div>
+                                    <h3>{comment.review}</h3>
+                                    <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)} > Delete </button>
+                                    <button disabled={props.user?.id !== comment.userId} onClick={() => togglePopUp(comment.id)}> Update Comment </button>
+                                </div>
 
-            <div> <h3>Comments:</h3>
-                <div>
-                    {resorts.Comments?.map((comment) => (
-                        <div key={comment.id} id="updateButton">
-                            <div>
-                                <h3>{comment.review}</h3>
-                                <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)} > Delete </button>
-                                <button disabled={props.user?.id !== comment.userId} onClick={() => togglePopUp(comment.id)}> Update Comment </button>
+                                {popUp && (<form
+                                    onSubmit=
+                                    {(event) => {
+                                        handleUpdate(event, comment.id)
+                                    }} className="update-form">
+                                    <label htmlFor='review'>Review:</label>
+                                    <input className='input'
+                                        id="review"
+                                        value={formState.review}
+                                        placeholder='review'
+                                        onChange={handleChange}
+                                    />
+                                    <button type="submit">Update Review</button>
+                                    <button className="close-popUp" onClick={togglePopUp}>
+                                        Close
+                                    </button>
+                                </form>)}
                             </div>
+                        ))} </div>
+                    <form onSubmit={handleSubmit} className="form-list">
+                        <label htmlFor='review'>Review:</label>
+                        <input className='input'
+                            id="review"
+                            value={formState.review}
+                            placeholder='review'
+                            onChange={handleChange}
+                        />
+                        <button type="submit">Add Review</button>
 
-                            {popUp && (<form
-                                onSubmit=
-                                {(event) => {
-                                    handleUpdate(event, comment.id)
-                                }} className="update-form">
-                                <label htmlFor='review'>Review:</label>
-                                <input className='input'
-                                    id="review"
-                                    value={formState.review}
-                                    placeholder='review'
-                                    onChange={handleChange}
-                                />
-                                <button type="submit">Update Review</button>
-                                <button className="close-popUp" onClick={togglePopUp}>
-                                    Close
-                                </button>
-                            </form>)}
-                        </div>
-                    ))} </div>
-                <form onSubmit={handleSubmit} className="form-list">
-                    <label htmlFor='review'>Review:</label>
-                    <input className='input'
-                        id="review"
-                        value={formState.review}
-                        placeholder='review'
-                        onChange={handleChange}
-                    />
-                    <button type="submit">Add Review</button>
+                    </form>
+                    <div>
+                    </div>
 
-                </form>
-                <div>
                 </div>
-
             </div>
         </div >
     )
