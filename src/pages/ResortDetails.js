@@ -138,35 +138,40 @@ const ResortDetails = (props) => {
                     </div>
                 </div>
 
-                <div className='comments'> <h3>Comments:</h3>
+                <div className='comments'>
                     <div>
-                        {resorts.Comments?.map((comment) => (
-                            <div key={comment.id} id="updateButton">
-                                <div>
-                                    <h3>{comment.review}</h3>
-                                    <button disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)} > Delete </button>
-                                    <button disabled={props.user?.id !== comment.userId} onClick={() => togglePopUp(comment.id)}> Update Comment </button>
+                        <div className='comment-txt'>
+                            <h3 className='comment-title'>Comments:</h3>
+                            {resorts.Comments?.map((comment) => (
+                                <div key={comment.id} id="updateButton">
+                                    <div className='comment-w-btns'>
+                                        <h3>{comment.review}</h3>
+                                        <button className="dlt" disabled={props.user?.id !== comment.userId} onClick={() => handleDelete(comment.id)} > Delete </button>
+                                        <button className="upd" disabled={props.user?.id !== comment.userId} onClick={() => togglePopUp(comment.id)}> Update Comment </button>
+                                    </div>
+
+                                    {popUp && (<form
+                                        onSubmit=
+                                        {(event) => {
+                                            handleUpdate(event, comment.id)
+                                        }} className="update-form">
+                                        <label htmlFor='review'>Review:</label>
+                                        <input className='input'
+                                            id="review"
+                                            value={formState.review}
+                                            placeholder='review'
+                                            onChange={handleChange}
+                                        />
+                                        <button type="submit">Update Review</button>
+                                        <button className="close-popUp" onClick={togglePopUp}>
+                                            Close
+                                        </button>
+                                    </form>)}
                                 </div>
 
-                                {popUp && (<form
-                                    onSubmit=
-                                    {(event) => {
-                                        handleUpdate(event, comment.id)
-                                    }} className="update-form">
-                                    <label htmlFor='review'>Review:</label>
-                                    <input className='input'
-                                        id="review"
-                                        value={formState.review}
-                                        placeholder='review'
-                                        onChange={handleChange}
-                                    />
-                                    <button type="submit">Update Review</button>
-                                    <button className="close-popUp" onClick={togglePopUp}>
-                                        Close
-                                    </button>
-                                </form>)}
-                            </div>
-                        ))} </div>
+                            ))} </div>
+                    </div>
+
                     <form onSubmit={handleSubmit} className="form-list">
                         <label htmlFor='review'>Review:</label>
                         <input className='input'

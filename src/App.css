@@ -134,7 +134,7 @@
 .detail-img {
   max-width: 100%;
   width: 600px;
-  padding-bottom: 8px;
+  /* padding-bottom: 8px; */
   max-height: 100%;
   height: 550px;
   justify-content: left;
@@ -180,8 +180,37 @@
 }
 
 .comments {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
   float: left;
   clear: left;
+  border: 2px solid black;
+  width: 100%;
+  margin-bottom: 40px;
+  margin-top: 10px;
+
+}
+
+.dlt {
+  font-size: 12px;
+  margin-right: 10px
+}
+
+.upd {
+  font-size: 12px
+}
+
+.comment-title {
+  text-decoration: underline
+}
+
+.comment-w-btns {
+
+  padding-left: 20px
+}
+
+.comment-txt {
+  text-align: left;
+  padding-left: 8px;
 }
 
 .background-tint {
