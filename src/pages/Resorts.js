@@ -44,6 +44,7 @@ const Resorts = () => {
         <div className="searchInputs"> </div>
         <div className='dataResults'>
             <input type="text"
+                placeholder='search location'
                 value={wordEntered}
                 onChange={() => handleFilter(resorts)} />
             <div className='Search Icon'>

@@ -115,12 +115,13 @@ const ResortDetails = (props) => {
                     </div>
 
                 </div>
+
                 <div className='details-container'>
                     <button onClick={() => navigate('/resorts')}
                         className="back-btn">Back to Resorts</button>
                     <div className='resort-title'>
                         <h1 className='resort-place'>{resorts.name}</h1>
-                        <h2>Location: {resorts.location}</h2>
+                        <h2> {resorts.location}</h2>
                     </div>
                     <div className='detail-img-container'>
                         <img className='detail-img' src={resorts.image} />

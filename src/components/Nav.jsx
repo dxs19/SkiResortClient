@@ -4,7 +4,6 @@ const Nav = ({ user, authenticated, handleLogOut }) => {
 
     return (<nav>
         <div className='div'>
-            <h3>Welcome!</h3>
             <Link to='/login'>Sign In</Link>
             <Link to='/register'>Register</Link>
             <Link to='/'>Home</Link>
