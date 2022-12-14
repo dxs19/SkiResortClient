@@ -33,7 +33,9 @@ const ResortDetails = (props) => {
 
 
 
-
+    let generateIconUrl = (ico) => {
+        return `http://openweathermap.org/img/wn/${ico}@2x.png`
+    }
 
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${resorts.longitude}&units=imperial&appid=${process.env.REACT_APP_WEATHER_KEY}`
 
@@ -95,18 +97,23 @@ const ResortDetails = (props) => {
                 className="back-btn">Back to Resorts</button>
 
             <div className='weather-container'>
+                <div> {weather.weather ?
+                    <img src={generateIconUrl(weather.weather[0].icon)} /> : null
+                }
+                </div>
+                <div className="description">
+                    {weather.weather ? <h1> {weather.weather[0].main}</h1> : null}
+                    <p>current weather</p>
+                </div>
                 <div className="temp">
                     {weather.main ? <h1> {weather.main.temp.toFixed()}°F</h1> : null}
                     <p>current temperature</p>
-                    <div className="description">
-                        {weather.weather ? <h1> {weather.weather[0].main}</h1> : null}
-                        <p>current weather</p>
-                    </div>
-                    <div className="wind">
-                        {weather.wind ? <p className='bold'>{weather.wind.speed.toFixed()} MPH</p> : null}
-                        <p>wind speed</p>
-                    </div>
                 </div>
+                <div className="wind">
+                    {weather.wind ? <p className='bold'>{weather.wind.speed.toFixed()} MPH</p> : null}
+                    <p>wind speed</p>
+                </div>
+
             </div>
             <div className='details-container'>
                 <h1>{resorts.name}</h1>

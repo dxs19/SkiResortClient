@@ -39,8 +39,12 @@
 }
 
 .weather-container {
-  display: grid;
-  grid-template-columns: 25% 25% 25%;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #222427;
+  margin-top: 60px;
 
 }
 
@@ -111,6 +115,8 @@
 
 .back-btn {
   float: left;
+  position: sticky;
+  z-index: 99;
 }
 
 .background-tint {
