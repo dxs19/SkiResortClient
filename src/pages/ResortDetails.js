@@ -155,7 +155,9 @@ const ResortDetails = (props) => {
                                         {(event) => {
                                             handleUpdate(event, comment.id)
                                         }} className="update-form">
-                                        <label htmlFor='review'>Review:</label>
+                                        <label htmlFor='review'>
+                                            <h4>Review:</h4>
+                                        </label>
                                         <input className='input'
                                             id="review"
                                             value={formState.review}
@@ -173,16 +175,16 @@ const ResortDetails = (props) => {
                     </div>
 
                     <form onSubmit={handleSubmit} className="form-list">
-                        <label htmlFor='review'>Review:</label>
+                        <label htmlFor='review'><h4 className='review-title'>Write a Review:</h4></label>
                         <input className='input'
                             id="review"
                             value={formState.review}
-                            placeholder='review'
                             onChange={handleChange}
                         />
-                        <button type="submit">Add Review</button>
+                        <button className="submit-review-btn" type="submit">Add Review</button>
 
                     </form>
+
                     <div>
                     </div>
 
