@@ -21,7 +21,7 @@ const Resorts = () => {
             setResorts(newFilter);
         }
     }
-
+    console.log(resorts.longitude)
 
     const showAllResorts = async () => {
         const data = await GetResorts()
